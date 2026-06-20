@@ -65,7 +65,7 @@ const Socials = () => {
               return (
                 <motion.a
                   key={index}
-                  href={social.url}
+                  href={social.url.startsWith('http://') || social.url.startsWith('https://') || social.url.startsWith('mailto:') ? social.url : 'https://' + social.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   initial={{ opacity: 0, scale: 0.8 }}
