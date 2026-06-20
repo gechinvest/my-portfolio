@@ -63,12 +63,20 @@ const defaultPortfolioData = {
     }
   ],
   contact: {
-    email: 'your.email@example.com',
-    phone: '+123 456 7890',
+    email: 'amex44755@gmail.com',
+    phone: '+251969093096',
     location: 'Your City, Country',
     socialLinks: [
-      { name: 'GitHub', url: 'https://github.com', icon: '💻' },
-      { name: 'LinkedIn', url: 'https://linkedin.com', icon: '💼' }
+      { name: 'GitHub', url: 'https://github.com/ame12-max', icon: 'FiGithub' },
+      { name: 'LinkedIn', url: 'https://linkedin.com/in/amame12', icon: 'FiLinkedin' },
+      { name: 'YouTube', url: 'https://youtube.com/@TechSpire2112', icon: 'FiYoutube' },
+      { name: 'Telegram', url: 'https://t.me/Techspiree', icon: 'FaTelegram' },
+      { name: 'Twitter', url: 'https://x.com/AmareA98775', icon: 'FiTwitter' },
+      { name: 'Instagram', url: 'https://instagram.com/amex44755', icon: 'FiInstagram' },
+      { name: 'WhatsApp', url: 'https://wa.me/+251969093096', icon: 'FaWhatsapp' },
+      { name: 'Email', url: 'mailto:amex44755@gmail.com', icon: 'FiMail' },
+      { name: 'Telegram Channel', url: 'https://t.me/techspire_tech', icon: 'FaTelegram' },
+      { name: 'Facebook', url: 'https://facebook.com/techspire', icon: 'FaFacebook' }
     ]
   },
   admin: {
