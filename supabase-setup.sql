@@ -8,11 +8,12 @@ CREATE TABLE IF NOT EXISTS portfolio (
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
--- Insert initial portfolio data (you can update this with your current data)
+-- Insert initial portfolio data using dollar quoting (avoids apostrophe issues)
 INSERT INTO portfolio (id, data)
 VALUES (
   1,
-  '{
+  $$
+  {
     "hero": {
       "name": "Geta Tenaw",
       "titles": ["Fullstack Developer", "Cybersecurity Researcher", "Problem Solver", "Tech Innovator"],
@@ -20,7 +21,7 @@ VALUES (
       "profileImage": ""
     },
     "about": {
-      "description": "I'\''m a passionate Full-Stack Developer and Cybersecurity Researcher who enjoys building reliable, secure systems and modern web applications. I focus on writing clean, scalable code and creating efficient solutions to real-world problems while continuously learning new technologies.",
+      "description": "I'm a passionate Full-Stack Developer and Cybersecurity Researcher who enjoys building reliable, secure systems and modern web applications. I focus on writing clean, scalable code and creating efficient solutions to real-world problems while continuously learning new technologies.",
       "counters": [
         { "value": 2, "label": "Years Experience" },
         { "value": 25, "label": "Projects Completed" },
@@ -82,15 +83,17 @@ VALUES (
     "admin": {
       "password": "admin123"
     }
-  }'::jsonb
+  }
+  $$::jsonb
 )
 ON CONFLICT (id) DO NOTHING;
 
--- Enable Row Level Security (RLS) - Optional but recommended for security
--- ALTER TABLE portfolio ENABLE ROW LEVEL SECURITY;
+-- IMPORTANT: After creating the table, you need to disable RLS or create policies
+-- Option 1: Disable RLS entirely (not recommended for production, but easy for testing)
+ALTER TABLE portfolio DISABLE ROW LEVEL SECURITY;
 
--- Create a policy to allow public read access (for your portfolio website)
--- CREATE POLICY "Allow public read access" ON portfolio FOR SELECT USING (true);
-
--- Create a policy to allow updates (you might want to restrict this with authentication in production)
--- CREATE POLICY "Allow public updates" ON portfolio FOR ALL USING (true);
+-- Option 2: If you want to keep RLS enabled, create these policies instead:
+-- CREATE POLICY "Enable read access for all users" ON portfolio FOR SELECT USING (true);
+-- CREATE POLICY "Enable insert access for all users" ON portfolio FOR INSERT WITH CHECK (true);
+-- CREATE POLICY "Enable update access for all users" ON portfolio FOR UPDATE USING (true);
+-- CREATE POLICY "Enable delete access for all users" ON portfolio FOR DELETE USING (true);
