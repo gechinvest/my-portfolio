@@ -865,10 +865,10 @@ const Admin = () => {
 
               <div className="border-t pt-6">
                 <h3 className="text-xl font-bold mb-4">Social Links</h3>
-                <div className="space-y-4">
+                <div className="space-y-4 mb-6">
                   {portfolioData.contact.socialLinks.map((link, i) => (
-                    <div key={i} className="flex gap-2 items-end">
-                      <div className="flex-1">
+                    <div key={i} className="flex gap-2 items-end flex-wrap">
+                      <div className="flex-1 min-w-[150px]">
                         <label className="block text-sm font-medium mb-1">Name</label>
                         <input
                           type="text"
@@ -877,7 +877,7 @@ const Admin = () => {
                           className="w-full px-3 py-2 rounded border"
                         />
                       </div>
-                      <div className="flex-1">
+                      <div className="flex-1 min-w-[200px]">
                         <label className="block text-sm font-medium mb-1">URL</label>
                         <input
                           type="url"
@@ -886,14 +886,26 @@ const Admin = () => {
                           className="w-full px-3 py-2 rounded border"
                         />
                       </div>
-                      <div className="w-24">
+                      <div className="w-40">
                         <label className="block text-sm font-medium mb-1">Icon</label>
-                        <input
-                          type="text"
+                        <select
                           value={link.icon}
                           onChange={(e) => handleSocialLinkUpdate(i, 'icon', e.target.value)}
-                          className="w-full px-3 py-2 rounded border"
-                        />
+                          className="w-full px-3 py-2 rounded border bg-white dark:bg-dark-200"
+                        >
+                          <option value="FiGithub">GitHub</option>
+                          <option value="FiLinkedin">LinkedIn</option>
+                          <option value="FiYoutube">YouTube</option>
+                          <option value="FaTelegram">Telegram</option>
+                          <option value="FiTwitter">Twitter/X</option>
+                          <option value="FiInstagram">Instagram</option>
+                          <option value="FaWhatsapp">WhatsApp</option>
+                          <option value="FiMail">Email</option>
+                          <option value="FaFacebook">Facebook</option>
+                          <option value="💻">💻</option>
+                          <option value="💼">💼</option>
+                          <option value="🔗">🔗</option>
+                        </select>
                       </div>
                       <button
                         onClick={() => removeSocialLink(i)}
@@ -903,9 +915,11 @@ const Admin = () => {
                       </button>
                     </div>
                   ))}
+                </div>
+                <div className="flex gap-3 flex-wrap">
                   <button
                     onClick={addSocialLink}
-                    className="px-4 py-2 bg-blue-500 text-white rounded"
+                    className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                   >
                     Add Social Link
                   </button>
