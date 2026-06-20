@@ -4,7 +4,7 @@ import { usePortfolio } from '../context/PortfolioContext';
 import { motion } from 'framer-motion';
 
 const Admin = () => {
-  const { portfolioData, updatePortfolioData, isAdmin, login, logout, changeAdminPassword } = usePortfolio();
+  const { portfolioData, updatePortfolioData, isAdmin, login, logout, changeAdminPassword, dbStatus, lastSync, syncLocalToSupabase, fetchPortfolioData } = usePortfolio();
   const [password, setPassword] = useState('');
   const [activeSection, setActiveSection] = useState('hero');
   const [editingItem, setEditingItem] = useState(null);
@@ -325,7 +325,22 @@ const Admin = () => {
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-4xl font-bold gradient-text">Admin Dashboard</h1>
-          <div className="flex gap-4">
+          <div className="flex gap-4 items-center">
+            {/* Database Status Indicator */}
+            <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 dark:bg-dark-200">
+              <div className={`w-3 h-3 rounded-full ${
+                dbStatus === 'connected' ? 'bg-green-500 animate-pulse' :
+                dbStatus === 'error' ? 'bg-red-500' :
+                dbStatus === 'checking' ? 'bg-yellow-500' :
+                'bg-gray-400'
+              }`}></div>
+              <span className="text-sm font-medium">
+                {dbStatus === 'connected' ? '✅ Synced' :
+                 dbStatus === 'error' ? '❌ Database Error' :
+                 dbStatus === 'checking' ? '⏳ Checking...' :
+                 '⚠️ Local Only'}
+              </span>
+            </div>
             <button
               onClick={() => navigate('/')}
               className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-all"
@@ -340,6 +355,57 @@ const Admin = () => {
             </button>
           </div>
         </div>
+
+        {/* Database Status Panel */}
+        {dbStatus !== 'connected' && (
+          <div className="glass p-6 rounded-2xl mb-8 border-2 border-yellow-400">
+            <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+              <span>⚠️</span> Database Not Connected
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              Changes are currently only saved to your local device. To sync across all devices, set up your Supabase database.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <button
+                onClick={async () => {
+                  const success = await syncLocalToSupabase();
+                  if (success) {
+                    alert('✅ Successfully synced to database!');
+                  } else {
+                    alert('❌ Failed to sync. Make sure your Supabase table is set up.');
+                  }
+                }}
+                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all"
+              >
+                Sync Local Data to Database
+              </button>
+              <button
+                onClick={fetchPortfolioData}
+                className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-all"
+              >
+                Refresh Connection
+              </button>
+            </div>
+            <div className="mt-4 p-4 bg-gray-50 dark:bg-dark-300 rounded-lg">
+              <p className="text-sm text-gray-600 dark:text-gray-300 font-medium mb-2">
+                📋 Setup Instructions:
+              </p>
+              <ol className="text-sm text-gray-500 dark:text-gray-400 list-decimal list-inside space-y-1">
+                <li>Go to your <a href="https://supabase.com/dashboard" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">Supabase Dashboard</a></li>
+                <li>Open the SQL Editor</li>
+                <li>Run the SQL from <code className="bg-gray-200 dark:bg-dark-400 px-1 rounded">supabase-setup.sql</code></li>
+                <li>Click "Sync Local Data to Database" above</li>
+              </ol>
+            </div>
+          </div>
+        )}
+
+        {/* Last Sync Info */}
+        {lastSync && (
+          <div className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+            Last synced: {new Date(lastSync).toLocaleString()}
+          </div>
+        )}
 
         <div className="flex flex-wrap gap-2 mb-8">
           {['hero', 'about', 'skills', 'projects', 'experience', 'contact', 'settings'].map(section => (
