@@ -326,6 +326,21 @@ const Admin = () => {
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-4xl font-bold gradient-text">Admin Dashboard</h1>
           <div className="flex gap-4 items-center">
+            {/* Database Status Indicator */}
+            <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 dark:bg-dark-200">
+              <div className={`w-3 h-3 rounded-full ${
+                dbStatus === 'connected' ? 'bg-green-500 animate-pulse' :
+                dbStatus === 'error' ? 'bg-red-500' :
+                dbStatus === 'checking' ? 'bg-yellow-500' :
+                'bg-gray-400'
+              }`}></div>
+              <span className="text-sm font-medium">
+                {dbStatus === 'connected' ? '✅ Synced' :
+                 dbStatus === 'error' ? '❌ Database Error' :
+                 dbStatus === 'checking' ? '⏳ Checking...' :
+                 '⚠️ Local Only'}
+              </span>
+            </div>
             <button
               onClick={() => navigate('/')}
               className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-all"
@@ -340,6 +355,39 @@ const Admin = () => {
             </button>
           </div>
         </div>
+
+        {/* Debug Panel - Check Sync Status */}
+        {dbStatus !== 'connected' && (
+          <div className="glass p-6 rounded-2xl mb-8 border-2 border-yellow-400">
+            <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+              <span>⚠️</span> Database Not Connected
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              Changes are currently only saved to your local device.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <button
+                onClick={async () => {
+                  const success = await syncLocalToSupabase();
+                  if (success) {
+                    alert('✅ Successfully synced to database!');
+                  } else {
+                    alert('❌ Failed to sync. Check browser console for details.');
+                  }
+                }}
+                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all"
+              >
+                Sync Local Data to Database
+              </button>
+              <button
+                onClick={fetchPortfolioData}
+                className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-all"
+              >
+                Refresh Connection
+              </button>
+            </div>
+          </div>
+        )}
 
         <div className="flex flex-wrap gap-2 mb-8">
           {['hero', 'about', 'skills', 'projects', 'experience', 'contact', 'settings'].map(section => (
