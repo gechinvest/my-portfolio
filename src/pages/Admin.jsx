@@ -419,7 +419,7 @@ const Admin = () => {
                     type="text"
                     name="name"
                     defaultValue={portfolioData.hero.name}
-                    className="w-full px-4 py-2 rounded-lg border"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                     required
                   />
                 </div>
@@ -429,7 +429,7 @@ const Admin = () => {
                     type="text"
                     name="titles"
                     defaultValue={portfolioData.hero.titles.join(', ')}
-                    className="w-full px-4 py-2 rounded-lg border"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                     required
                   />
                 </div>
@@ -439,7 +439,7 @@ const Admin = () => {
                     name="description"
                     rows="4"
                     defaultValue={portfolioData.hero.description}
-                    className="w-full px-4 py-2 rounded-lg border"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                     required
                   />
                 </div>
@@ -450,7 +450,7 @@ const Admin = () => {
                       type="file"
                       accept="image/*"
                       onChange={handleProfileFileChange}
-                      className="flex-1 px-4 py-2 rounded-lg border"
+                      className="flex-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                     />
                   </div>
                   {(profileImagePreview || portfolioData.hero.profileImage) && (
@@ -481,7 +481,7 @@ const Admin = () => {
                     name="description"
                     rows="6"
                     defaultValue={portfolioData.about.description}
-                    className="w-full px-4 py-2 rounded-lg border"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                     required
                   />
                 </div>
@@ -501,7 +501,7 @@ const Admin = () => {
                           type="number"
                           value={counter.value}
                           onChange={(e) => handleCounterUpdate(i, 'value', e.target.value)}
-                          className="w-full px-3 py-2 rounded border"
+                          className="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                         />
                       </div>
                       <div className="flex-1">
@@ -510,7 +510,7 @@ const Admin = () => {
                           type="text"
                           value={counter.label}
                           onChange={(e) => handleCounterUpdate(i, 'label', e.target.value)}
-                          className="w-full px-3 py-2 rounded border"
+                          className="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                         />
                       </div>
                       <button
@@ -542,7 +542,7 @@ const Admin = () => {
                     type="text"
                     name="skillName"
                     defaultValue={editingItem !== null ? portfolioData.skills[editingItem].name : ''}
-                    className="w-full px-4 py-2 rounded-lg border"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                     required
                   />
                 </div>
@@ -552,7 +552,7 @@ const Admin = () => {
                     type="text"
                     name="skillIcon"
                     defaultValue={editingItem !== null ? portfolioData.skills[editingItem].icon : 'SiReact'}
-                    className="w-full px-4 py-2 rounded-lg border"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                     required
                   />
                 </div>
@@ -562,7 +562,7 @@ const Admin = () => {
                     type="color"
                     name="skillColor"
                     defaultValue={editingItem !== null ? portfolioData.skills[editingItem].color : '#000000'}
-                    className="w-full h-12 rounded-lg border"
+                    className="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-600"
                     required
                   />
                 </div>
@@ -574,7 +574,7 @@ const Admin = () => {
                     min="0"
                     max="100"
                     defaultValue={editingItem !== null ? portfolioData.skills[editingItem].level : 50}
-                    className="w-full px-4 py-2 rounded-lg border"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                     required
                   />
                 </div>
@@ -637,7 +637,7 @@ const Admin = () => {
                     type="text"
                     name="projectTitle"
                     defaultValue={editingItem !== null ? portfolioData.projects[editingItem].title : ''}
-                    className="w-full px-4 py-2 rounded-lg border"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                     required
                   />
                 </div>
@@ -647,7 +647,7 @@ const Admin = () => {
                     name="projectDescription"
                     rows="4"
                     defaultValue={editingItem !== null ? portfolioData.projects[editingItem].description : ''}
-                    className="w-full px-4 py-2 rounded-lg border"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                     required
                   />
                 </div>
@@ -658,7 +658,7 @@ const Admin = () => {
                       type="file"
                       accept="image/*"
                       onChange={handleFileChange}
-                      className="flex-1 px-4 py-2 rounded-lg border"
+                      className="flex-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                     />
                   </div>
                   <div className="mt-2">
@@ -667,7 +667,7 @@ const Admin = () => {
                       type="text"
                       name="projectImage"
                       defaultValue={editingItem !== null ? portfolioData.projects[editingItem].image : ''}
-                      className="w-full px-4 py-2 rounded-lg border"
+                      className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                     />
                   </div>
                   {(projectImagePreview || (editingItem !== null && portfolioData.projects[editingItem].image)) && (
@@ -687,7 +687,7 @@ const Admin = () => {
                     type="text"
                     name="projectTags"
                     defaultValue={editingItem !== null ? portfolioData.projects[editingItem].tags.join(', ') : ''}
-                    className="w-full px-4 py-2 rounded-lg border"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                     required
                   />
                 </div>
@@ -697,7 +697,7 @@ const Admin = () => {
                     type="text"
                     name="projectCategory"
                     defaultValue={editingItem !== null ? portfolioData.projects[editingItem].category : 'fullstack'}
-                    className="w-full px-4 py-2 rounded-lg border"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                     required
                   />
                 </div>
@@ -707,7 +707,7 @@ const Admin = () => {
                     type="url"
                     name="projectLiveUrl"
                     defaultValue={editingItem !== null ? portfolioData.projects[editingItem].liveUrl : ''}
-                    className="w-full px-4 py-2 rounded-lg border"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                   />
                 </div>
                 <div>
@@ -716,7 +716,7 @@ const Admin = () => {
                     type="url"
                     name="projectGithubUrl"
                     defaultValue={editingItem !== null ? portfolioData.projects[editingItem].githubUrl : ''}
-                    className="w-full px-4 py-2 rounded-lg border"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                   />
                 </div>
                 <div className="flex gap-2">
@@ -783,7 +783,7 @@ const Admin = () => {
                     type="text"
                     name="expYear"
                     defaultValue={editingItem !== null ? portfolioData.experience[editingItem].year : ''}
-                    className="w-full px-4 py-2 rounded-lg border"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                     required
                   />
                 </div>
@@ -793,7 +793,7 @@ const Admin = () => {
                     type="text"
                     name="expTitle"
                     defaultValue={editingItem !== null ? portfolioData.experience[editingItem].title : ''}
-                    className="w-full px-4 py-2 rounded-lg border"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                     required
                   />
                 </div>
@@ -803,7 +803,7 @@ const Admin = () => {
                     type="text"
                     name="expCompany"
                     defaultValue={editingItem !== null ? portfolioData.experience[editingItem].company : ''}
-                    className="w-full px-4 py-2 rounded-lg border"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                     required
                   />
                 </div>
@@ -813,7 +813,7 @@ const Admin = () => {
                     name="expDescription"
                     rows="4"
                     defaultValue={editingItem !== null ? portfolioData.experience[editingItem].description : ''}
-                    className="w-full px-4 py-2 rounded-lg border"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                     required
                   />
                 </div>
@@ -823,7 +823,7 @@ const Admin = () => {
                     type="text"
                     name="expIcon"
                     defaultValue={editingItem !== null ? portfolioData.experience[editingItem].icon : '🚀'}
-                    className="w-full px-4 py-2 rounded-lg border"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                     required
                   />
                 </div>
@@ -882,7 +882,7 @@ const Admin = () => {
                     type="email"
                     name="contactEmail"
                     defaultValue={portfolioData.contact.email}
-                    className="w-full px-4 py-2 rounded-lg border"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                     required
                   />
                 </div>
@@ -892,7 +892,7 @@ const Admin = () => {
                     type="text"
                     name="contactPhone"
                     defaultValue={portfolioData.contact.phone}
-                    className="w-full px-4 py-2 rounded-lg border"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                     required
                   />
                 </div>
@@ -902,7 +902,7 @@ const Admin = () => {
                     type="text"
                     name="contactLocation"
                     defaultValue={portfolioData.contact.location}
-                    className="w-full px-4 py-2 rounded-lg border"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                     required
                   />
                 </div>
@@ -922,7 +922,7 @@ const Admin = () => {
                           type="text"
                           value={link.name}
                           onChange={(e) => handleSocialLinkUpdate(i, 'name', e.target.value)}
-                          className="w-full px-3 py-2 rounded border"
+                          className="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                         />
                       </div>
                       <div className="flex-1 min-w-[200px]">
@@ -931,7 +931,7 @@ const Admin = () => {
                           type="url"
                           value={link.url}
                           onChange={(e) => handleSocialLinkUpdate(i, 'url', e.target.value)}
-                          className="w-full px-3 py-2 rounded border"
+                          className="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                         />
                       </div>
                       <div className="w-40">
@@ -939,7 +939,7 @@ const Admin = () => {
                         <select
                           value={link.icon}
                           onChange={(e) => handleSocialLinkUpdate(i, 'icon', e.target.value)}
-                          className="w-full px-3 py-2 rounded border bg-white dark:bg-dark-200"
+                          className="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-200 text-gray-900 dark:text-white"
                         >
                           <option value="FiGithub">GitHub</option>
                           <option value="FiLinkedin">LinkedIn</option>
@@ -988,7 +988,7 @@ const Admin = () => {
                       type="password"
                       value={newAdminPassword}
                       onChange={(e) => setNewAdminPassword(e.target.value)}
-                      className="w-full px-4 py-2 rounded-lg border"
+                      className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                       required
                     />
                   </div>
@@ -998,7 +998,7 @@ const Admin = () => {
                       type="password"
                       value={confirmAdminPassword}
                       onChange={(e) => setConfirmAdminPassword(e.target.value)}
-                      className="w-full px-4 py-2 rounded-lg border"
+                      className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-dark-200/70 text-gray-900 dark:text-white"
                       required
                     />
                   </div>
