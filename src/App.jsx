@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
-import { PortfolioProvider } from './context/PortfolioContext';
+import { PortfolioProvider, usePortfolio } from './context/PortfolioContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import LoadingScreen from './components/LoadingScreen';
@@ -19,11 +19,18 @@ import Admin from './pages/Admin';
 function AppContent() {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
+  const { portfolioData } = usePortfolio();
   const isAdminPage = location.pathname === '/admin';
 
   useEffect(() => {
     setTimeout(() => setLoading(false), 2000);
   }, []);
+
+  useEffect(() => {
+    if (portfolioData.hero.name) {
+      document.title = `${portfolioData.hero.name} - Fullstack Web Developer Portfolio`;
+    }
+  }, [portfolioData.hero.name]);
 
   return (
     <AnimatePresence mode="wait">
