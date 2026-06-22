@@ -45,6 +45,17 @@ VALUES (
 )
 ON CONFLICT (id) DO NOTHING;
 
--- IMPORTANT: After creating the table, you need to disable RLS or create policies
--- Option 1: Disable RLS entirely (not recommended for production, but easy for testing)
-ALTER TABLE portfolio DISABLE ROW LEVEL SECURITY;
+-- Enable RLS (recommended for security)
+ALTER TABLE portfolio ENABLE ROW LEVEL SECURITY;
+
+-- Create RLS policies to allow public read/write access (since this is a portfolio)
+CREATE POLICY "Allow public read access on portfolio"
+  ON portfolio
+  FOR SELECT
+  USING (true);
+
+CREATE POLICY "Allow public write access on portfolio"
+  ON portfolio
+  FOR ALL
+  USING (true)
+  WITH CHECK (true);
