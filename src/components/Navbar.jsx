@@ -4,14 +4,12 @@ import { Link as ScrollLink } from "react-scroll";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
 import ThemeToggle from "./ThemeToggle";
-import { usePortfolio } from "../context/PortfolioContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
-  const { portfolioData } = usePortfolio();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -29,8 +27,10 @@ const Navbar = () => {
     "Socials",
   ];
 
+  // Function to render the appropriate link based on current page
   const renderLink = (item, onClick) => {
     if (item === "Socials") {
+      // Socials always routes to /socials
       return (
         <RouterLink
           key={item}
@@ -42,6 +42,7 @@ const Navbar = () => {
         </RouterLink>
       );
     } else if (isHomePage) {
+      // On homepage, use ScrollLink for smooth scrolling
       return (
         <ScrollLink
           key={item}
@@ -57,6 +58,7 @@ const Navbar = () => {
         </ScrollLink>
       );
     } else {
+      // On other pages, navigate to home page
       return (
         <RouterLink
           key={item}
@@ -80,6 +82,7 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
+        {/* Logo - always scrolls to top on homepage, or goes home */}
         {isHomePage ? (
           <ScrollLink
             to="home"
@@ -87,19 +90,21 @@ const Navbar = () => {
             duration={500}
             className="text-2xl font-bold cursor-pointer"
           >
-            <span className="gradient-text">{portfolioData.hero.name}</span>
+            <span className="gradient-text">Amare</span>
           </ScrollLink>
         ) : (
           <RouterLink to="/" className="text-2xl font-bold cursor-pointer">
-            <span className="gradient-text">{portfolioData.hero.name}</span>
+            <span className="gradient-text">Amare</span>
           </RouterLink>
         )}
 
+        {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
           {navItems.map((item) => renderLink(item))}
           <ThemeToggle />
         </div>
 
+        {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center space-x-4">
           <ThemeToggle />
           <button
@@ -111,6 +116,7 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* Mobile Menu */}
       {isOpen && (
         <motion.div
           initial={{ opacity: 0, y: -20 }}

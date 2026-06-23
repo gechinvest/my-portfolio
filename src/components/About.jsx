@@ -1,7 +1,7 @@
 import { useInView } from 'react-intersection-observer';
 import { motion, useSpring, useTransform } from 'framer-motion';
 import { useEffect } from 'react';
-import { usePortfolio } from '../context/PortfolioContext';
+import profile from '../assets/profile.png';
 
 const Counter = ({ value, label }) => {
   const [ref, inView] = useInView({ triggerOnce: true });
@@ -21,7 +21,6 @@ const Counter = ({ value, label }) => {
 };
 
 const About = () => {
-  const { portfolioData } = usePortfolio();
   return (
     <section id="about" className="py-20 bg-white/80 dark:bg-dark-300/80 backdrop-blur-sm">
       <div className="container mx-auto px-6">
@@ -42,7 +41,7 @@ const About = () => {
             className="md:w-1/3"
           >
             <div className="glass p-1 rounded-2xl">
-              <img src={portfolioData.hero.profileImage} alt={portfolioData.hero.name} className="rounded-2xl w-full" />
+              <img src={profile} alt="Amare" className="rounded-2xl w-full" />
             </div>
           </motion.div>
 
@@ -53,12 +52,12 @@ const About = () => {
             className="md:w-2/3"
           >
             <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-6">
-              {portfolioData.about.description}
+            I'm a passionate Full-Stack Developer who enjoys building reliable systems and modern web applications. I focus on writing clean, scalable code and creating efficient solutions to real-world problems while continuously learning new technologies.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 mt-8">
-              {portfolioData.about.counters.map((counter, i) => (
-                <Counter key={i} value={counter.value} label={counter.label} />
-              ))}
+              <Counter value={1} label="Years Experience" />
+              <Counter value={20} label="Projects Completed" />
+              <Counter value={5} label="Technologies" />
             </div>
           </motion.div>
         </div>

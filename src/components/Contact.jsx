@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import { useInView } from 'react-intersection-observer'; // use this instead of framer's useInView for simplicity
 import axios from 'axios';
-import { usePortfolio } from '../context/PortfolioContext';
 
 const Contact = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.3 });
@@ -14,7 +13,6 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
-  const { portfolioData } = usePortfolio();
 
   const handleChange = (e) => {
     setFormData({
@@ -34,9 +32,9 @@ const Contact = () => {
       setSubmitStatus({ type: 'success', message: response.data.message });
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
-      setSubmitStatus({
-        type: 'error',
-        message: error.response?.data?.message || 'Failed to send message. Please try again.'
+      setSubmitStatus({ 
+        type: 'error', 
+        message: error.response?.data?.message || 'Failed to send message. Please try again.' 
       });
     } finally {
       setIsSubmitting(false);
@@ -47,21 +45,28 @@ const Contact = () => {
     {
       icon: '📧',
       title: 'Email',
-      value: portfolioData.contact.email,
-      link: `mailto:${portfolioData.contact.email}`
+      value: 'amex44755@gmail.com',
+      link: 'mailto:amex44755@gmail.com'
     },
     {
       icon: '📱',
       title: 'Phone',
-      value: portfolioData.contact.phone,
-      link: `tel:${portfolioData.contact.phone}`
+      value: '+251 985 139 776',
+      link: 'tel:+251985139776'
     },
     {
       icon: '📍',
       title: 'Location',
-      value: portfolioData.contact.location,
+      value: 'Injibara, ETHIOPIA',
       link: '#'
     }
+  ];
+
+  const socialLinks = [
+    { name: 'GitHub', url: '#', icon: '💻' },
+    { name: 'LinkedIn', url: '#', icon: '💼' },
+    { name: 'Twitter', url: '#', icon: '🐦' },
+    { name: 'Dribbble', url: '#', icon: '🎨' }
   ];
 
   return (
@@ -73,16 +78,19 @@ const Contact = () => {
           transition={{ duration: 0.8 }}
           className="max-w-6xl mx-auto"
         >
+          {/* Section Header */}
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">
               Get In <span className="gradient-text">Touch</span>
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              Have a project in mind, a security concern, or want to collaborate? I'd love to hear from you.
+              Have a project in mind or want to collaborate? I'd love to hear from you. 
+              Let's create something amazing together.
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
+            {/* Contact Information */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
@@ -91,12 +99,14 @@ const Contact = () => {
               <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
                 Let's Talk
               </h3>
-
+              
               <p className="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
-                I'm always open to discussing new opportunities, creative ideas, or security research topics.
-                Feel free to reach out through any of the channels below.
+                I'm always open to discussing new opportunities, creative ideas, 
+                or opportunities to be part of your vision. Feel free to reach out 
+                through any of the channels below.
               </p>
 
+              {/* Contact Methods */}
               <div className="space-y-6 mb-8">
                 {contactMethods.map((method, index) => (
                   <motion.a
@@ -107,7 +117,7 @@ const Contact = () => {
                     transition={{ delay: 0.3 + index * 0.1 }}
                     className="flex items-center p-4 rounded-xl glass hover:bg-white/80 dark:hover:bg-dark-200/80 transition-colors duration-300 group"
                   >
-                    <span className="text-3xl mr-4">{method.icon}</span>
+                    <span className="text-2xl mr-4">{method.icon}</span>
                     <div>
                       <div className="font-semibold text-gray-900 dark:text-white">
                         {method.title}
@@ -120,12 +130,13 @@ const Contact = () => {
                 ))}
               </div>
 
+              {/* Social Links */}
               <div>
                 <h4 className="font-semibold mb-4 text-gray-900 dark:text-white">
                   Follow Me
                 </h4>
                 <div className="flex gap-4">
-                  {portfolioData.contact.socialLinks.map((social, index) => (
+                  {socialLinks.map((social, index) => (
                     <motion.a
                       key={social.name}
                       href={social.url}
@@ -144,6 +155,7 @@ const Contact = () => {
               </div>
             </motion.div>
 
+            {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
@@ -209,7 +221,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white/70 dark:bg-dark-200/70 backdrop-blur-sm text-gray-900 dark:text-white transition-all duration-300 resize-vertical"
-                    placeholder="Tell me about your project or security question..."
+                    placeholder="Tell me about your project..."
                   ></textarea>
                 </div>
                 <button
@@ -232,8 +244,8 @@ const Contact = () => {
 
                 {submitStatus && (
                   <div className={`p-4 rounded-lg ${
-                    submitStatus.type === 'success'
-                      ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                    submitStatus.type === 'success' 
+                      ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400' 
                       : 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400'
                   }`}>
                     {submitStatus.message}

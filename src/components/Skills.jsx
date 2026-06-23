@@ -1,35 +1,24 @@
 import { motion } from 'framer-motion';
-import { usePortfolio } from '../context/PortfolioContext';
-import {
-  SiReact, SiNodedotjs, SiExpress, SiMysql,
-  SiJavascript, SiHtml5, SiCss, SiTailwindcss,
+import { 
+  SiReact, SiNodedotjs, SiExpress, SiMysql, 
+  SiJavascript, SiHtml5, SiCss , SiTailwindcss,
   SiGit, SiMongodb
 } from 'react-icons/si';
-import { FaShieldAlt, FaLock } from 'react-icons/fa';
 
-const IconComponent = ({ iconName, color, size = 48 }) => {
-  const iconMap = {
-    SiReact,
-    SiNodedotjs,
-    SiExpress,
-    SiMysql,
-    SiJavascript,
-    SiHtml5,
-    SiCss3: SiCss,
-    SiTailwindcss,
-    SiGit,
-    SiMongodb,
-    ShieldCheck: FaShieldAlt,
-    Lock: FaLock
-  };
-
-  const Icon = iconMap[iconName] || SiReact;
-  return <Icon size={size} style={{ color }} />;
-};
+const skills = [
+  { name: 'React', icon: SiReact, level: 90, color: '#61DAFB' },
+  { name: 'Node.js', icon: SiNodedotjs, level: 85, color: '#68A063' },
+  { name: 'Express', icon: SiExpress, level: 80, color: '#808080' },
+  { name: 'MySQL', icon: SiMysql, level: 75, color: '#00758F' },
+  { name: 'JavaScript', icon: SiJavascript, level: 95, color: '#F7DF1E' },
+  { name: 'HTML5', icon: SiHtml5, level: 95, color: '#E44D26' },
+  { name: 'CSS3', icon: SiCss , level: 90, color: '#1572B6' },
+  { name: 'Tailwind', icon: SiTailwindcss, level: 85, color: '#38B2AC' },
+  { name: 'Git', icon: SiGit, level: 80, color: '#F1502F' },
+  { name: 'MongoDB', icon: SiMongodb, level: 70, color: '#4DB33D' },
+];
 
 const Skills = () => {
-  const { portfolioData } = usePortfolio();
-
   return (
     <section id="skills" className="py-20 bg-white/80 dark:bg-dark-300/80 backdrop-blur-sm">
       <div className="container mx-auto px-6">
@@ -42,7 +31,7 @@ const Skills = () => {
         </motion.h2>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
-          {portfolioData.skills.map((skill, index) => (
+          {skills.map((skill, index) => (
             <motion.div
               key={skill.name}
               initial={{ opacity: 0, y: 30 }}
@@ -51,8 +40,8 @@ const Skills = () => {
               whileHover={{ scale: 1.05 }}
               className="glass p-6 rounded-2xl flex flex-col items-center"
             >
-              <IconComponent iconName={skill.icon} color={skill.color} size={48} />
-              <h3 className="font-semibold mb-2 text-gray-900 dark:text-white">{skill.name}</h3>
+              <skill.icon className="text-5xl mb-3" style={{ color: skill.color }} />
+              <h3 className="font-semibold mb-2 text-gray-800 dark:text-white">{skill.name}</h3>
               <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                 <motion.div
                   initial={{ width: 0 }}
